@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<root xmlns="urn:schemas-upnp-org:device-1-0">
+  <specVersion>
+    <major>1</major>
+    <minor>0</minor>
+  </specVersion>
+  <device>
+    <implementationList>
+        <implementationFile>I_Heatmiser.xml</implementationFile>
+    </implementationList>
+    <deviceType>urn:schemas-upnp-org:device:HVAC_ZoneThermostat:1</deviceType>
+	<staticJson>D_Heatmiser.json</staticJson>
+
+	<serviceList>
+		<service>
+			<serviceType>urn:micasaverde-com:serviceId:HVAC_OperatingState:1</serviceType>
+			<serviceId>urn:micasaverde-com:serviceId:HVAC_OperatingState1</serviceId>
+			<SCPDURL>S_HVAC_OperatingState1.xml</SCPDURL>
+		</service>
+
+		<service>
+			<serviceType>urn:schemas-upnp-org:service:HVAC_UserOperatingMode:1</serviceType>
+			<serviceId>urn:upnp-org:serviceId:HVAC_UserOperatingMode1</serviceId>
+			<SCPDURL>S_HVAC_UserOperatingMode1.xml</SCPDURL>
+		</service>
+
+		<service>
+			<serviceType>urn:schemas-upnp-org:service:TemperatureSensor:1</serviceType>
+			<serviceId>urn:upnp-org:serviceId:TemperatureSensor1</serviceId>
+			<SCPDURL>S_TemperatureSensor1.xml</SCPDURL>
+		</service>
+
+		<service>
+			<serviceType>urn:schemas-upnp-org:service:TemperatureSetpoint:1</serviceType>
+			<serviceId>urn:upnp-org:serviceId:TemperatureSetpoint1</serviceId>
+			<SCPDURL>S_TemperatureSetpoint1.xml</SCPDURL>
+		</service>
+
+		<service>
+			<serviceType>urn:ra-carter-com:service:Heatmiser:1</serviceType>
+            <serviceId>urn:ra-carter-com:serviceId:Heatmiser</serviceId>
+			<SCPDURL>S_Heatmiser.xml</SCPDURL>
+		</service>
+
+	</serviceList>
+
+  <sceneList>
+{
+	"group_1":{
+		"cmd_1":
+		{
+			"label": "OFF",
+			"serviceId": "urn:upnp-org:serviceId:HVAC_UserOperatingMode1",
+			"action": "SetModeTarget",
+			"arguments":
+			{
+				"NewModeTarget": "Off"
+			}
+		},
+		"cmd_2":
+		{
+			"label": "HEAT",
+			"serviceId": "urn:upnp-org:serviceId:HVAC_UserOperatingMode1",
+			"action": "SetModeTarget",
+			"arguments":
+			{
+				"NewModeTarget": "HeatOn"
+			}
+		},
+		"cmd_3":
+		{
+			"label": "AUTO",
+			"serviceId": "urn:upnp-org:serviceId:HVAC_UserOperatingMode1",
+			"action": "SetModeTarget",
+			"arguments":
+			{
+				"NewModeTarget": "AutoChangeOver"
+			}
+		}
+	},
+	"group_2":{
+		"cmd_1":
+		{
+			"label": "Set Heat Setpoint",
+			"serviceId": "urn:upnp-org:serviceId:TemperatureSetpoint1",
+			"action": "SetCurrentSetpoint",
+			"argumentList":
+			{
+				"argument_1" :
+				{
+					"dataType": "ui1",
+					"defaultValue": "",
+					"allowedValueRange" :
+					{
+						"minimum": "0",
+						"maximum": "100"
+					},
+					"prefix": "to",
+					"suffix": "°",
+					"name": "NewCurrentSetpoint"
+				}
+			}
+		}
+	},
+	"group_3":{
+		"cmd_1":
+		{
+			"label": "AUTO",
+			"serviceId": "urn:ra-carter-com:serviceId:Heatmiser",
+			"action": "SetHWMode",
+			"arguments":
+			{
+				"NewHWMode": "Auto"
+			}
+		},
+		"cmd_2":
+		{
+			"label": "ON",
+			"serviceId": "urn:ra-carter-com:serviceId:Heatmiser",
+			"action": "SetHWMode",
+			"arguments":
+			{
+				"NewHWMode": "On"
+			}
+		},
+		"cmd_3":
+		{
+			"label": "OFF",
+			"serviceId": "urn:ra-carter-com:serviceId:Heatmiser",
+			"action": "SetHWMode",
+			"arguments":
+			{
+				"NewHWMode": "Off"
+			}
+		}
+	}
+}
+  </sceneList>
+  <eventList>
+{
+	"event_1":{
+		"label": "Thermostat Mode Changes",
+		"serviceId": "urn:upnp-org:serviceId:HVAC_UserOperatingMode1",
+		"argumentList" :
+		{
+			"argument_1" :
+			{
+				"dataType": "string",
+				"defaultValue": "",
+				"allowedValueList" :
+				{
+					"Off" : "Off",
+					"Cool" : "CoolOn",
+					"Heat" : "HeatOn",
+					"Auto" : "AutoChangeOver"
+				},
+				"name": "ModeStatus",
+				"comparisson": "=",
+				"prefix": "Which mode",
+				"suffix": "none"
+			}
+		}
+	},
+	"event_2":{
+		"label": "Temperature goes above",
+		"serviceId": "urn:upnp-org:serviceId:TemperatureSensor1",
+		"argumentList" :
+		{
+			"argument_1" :
+			{
+				"dataType": "i4",
+				"name": "CurrentTemperature",
+				"comparisson": "&gt;",
+				"prefix": "temperature: ",
+				"suffix": " degrees"
+			}
+		}
+	},
+	"event_3":{
+		"label": "Temperature is reached",
+		"serviceId": "urn:upnp-org:serviceId:TemperatureSensor1",
+		"argumentList" :
+		{
+			"argument_1" :
+			{
+				"dataType": "i4",
+				"name": "CurrentTemperature",
+				"comparisson": "&lt;,&gt;",
+				"prefix": "temperature: ",
+				"suffix": " degrees"
+			}
+		}
+	},
+	"event_4":{
+		"label": "Thermostat set point is reached",
+		"serviceId": "urn:upnp-org:serviceId:TemperatureSetpoint1",
+		"argumentList" :
+		{
+			"argument_1" :
+			{
+				"dataType": "i4",
+				"name": "CurrentSetpoint",
+				"comparisson": "&gt;",
+				"prefix": "temperature: ",
+				"suffix": " degrees"
+			}
+		}
+	}
+}
+  </eventList>
+  </device>
+</root>

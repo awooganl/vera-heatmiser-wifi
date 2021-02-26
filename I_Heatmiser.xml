@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<implementation>
+    <settings>
+        <protocol>raw</protocol>
+        <handleChildren>1</handleChildren>
+    </settings>
+
+    <files>L_Heatmiser.lua</files>
+
+    <startup>initialise</startup>
+
+    <actionList>
+
+        <action>
+            <serviceId>urn:ra-carter-com:serviceId:Heatmiser</serviceId>
+            <name>SetKeyLock</name>
+            <job>setKeyLock(lul_device,lul_settings)</job>
+      </action>
+
+        <action>
+            <serviceId>urn:ra-carter-com:serviceId:Heatmiser</serviceId>
+            <name>SetOnOff</name>
+            <job>setOnOff(lul_device,lul_settings)</job>
+      </action>
+
+        <action>
+            <serviceId>urn:ra-carter-com:serviceId:Heatmiser</serviceId>
+            <name>SetRunMode</name>
+            <job>setRunMode(lul_device,lul_settings)</job>
+      </action>
+
+        <action>
+            <serviceId>urn:ra-carter-com:serviceId:Heatmiser</serviceId>
+            <name>SetHWMode</name>
+            <job>setHWMode(lul_device,lul_settings)</job>
+      </action>
+
+        <action>
+            <serviceId>urn:ra-carter-com:serviceId:Heatmiser</serviceId>
+            <name>SetFrostTemp</name>
+            <job>setFrostTemp(lul_device,lul_settings)</job>
+      </action>
+
+        <action>
+            <serviceId>urn:ra-carter-com:serviceId:Heatmiser</serviceId>
+            <name>SetHoldTime</name>
+            <job>setHoldTime(lul_device,lul_settings)</job>
+      </action>
+
+        <action>
+            <serviceId>urn:upnp-org:serviceId:TemperatureSetpoint1</serviceId>
+            <name>SetCurrentSetpoint</name>
+            <job>setCurrentSetpoint(lul_device,lul_settings)</job>
+      </action>
+
+      <action>
+            <serviceId>urn:upnp-org:serviceId:HVAC_UserOperatingMode1</serviceId>
+            <name>SetModeTarget</name>
+            <job>setCurrentMode(lul_device,lul_settings)</job>
+      </action>
+
+  </actionList>
+</implementation>
+

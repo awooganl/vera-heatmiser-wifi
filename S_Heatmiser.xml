@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<scpd xmlns="urn:schemas-upnp-org:service-1-0">
+  <specVersion>
+    <major>1</major>
+    <minor>0</minor>
+  </specVersion>
+  
+  <actionList>
+
+	<action>
+      <name>SetKeyLock</name>
+      <argumentList>
+        <argument>
+          <name>KeyState</name>
+          <direction>in</direction>
+        </argument>
+      </argumentList>
+    </action>
+
+	<action>
+      <name>SetFrostTemp</name>
+      <argumentList>
+        <argument>
+          <name>FrostTemp</name>
+          <direction>in</direction>
+        </argument>
+      </argumentList>
+    </action>
+    
+	<action>
+      <name>SetCurrentSetpoint</name>
+      <argumentList>
+        <argument>
+          <name>NewCurrentSetpoint</name>
+          <direction>in</direction>
+        </argument>
+      </argumentList>
+    </action>
+
+	<action>
+      <name>SetOnOff</name>
+      <argumentList>
+        <argument>
+          <name>OnOffState</name>
+          <direction>in</direction>
+        </argument>
+      </argumentList>
+    </action>
+
+	<action>
+      <name>SetRunMode</name>
+      <argumentList>
+        <argument>
+          <name>FrostState</name>
+          <direction>in</direction>
+        </argument>
+      </argumentList>
+    </action>
+
+	<action>
+      <name>SetHoldTime</name>
+      <argumentList>
+        <argument>
+          <name>HoldTime</name>
+          <direction>in</direction>
+        </argument>
+      </argumentList>
+    </action>
+    
+	<action>
+      <name>SetHWMode</name>
+      <argumentList>
+        <argument>
+          <name>NewHWMode</name>
+          <direction>in</direction>
+        </argument>
+      </argumentList>
+    </action>
+
+  </actionList>
+</scpd>
